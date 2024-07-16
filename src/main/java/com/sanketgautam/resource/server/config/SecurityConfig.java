@@ -15,12 +15,8 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
-        http.authorizeHttpRequests(auth -> {
-            auth.anyRequest().authenticated();
-        });
-        http.oauth2ResourceServer(rs -> {
-            rs.jwt(jwt -> jwt.jwkSetUri(jwksUri));
-        });
+        http.authorizeHttpRequests(auth -> auth.anyRequest().authenticated());
+        http.oauth2ResourceServer(rs -> rs.jwt(jwt -> jwt.jwkSetUri(jwksUri)));
         return http.build();
     }
 }
